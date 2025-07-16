@@ -3,7 +3,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
-# Load data and split it
 X_train, X_test, y_train, y_test = train_test_split(
     load_iris().data, 
     load_iris().target, 
@@ -11,11 +10,9 @@ X_train, X_test, y_train, y_test = train_test_split(
     random_state=42
 )
 
-# Train and evaluate KNN model
 knn = KNeighborsClassifier(n_neighbors=3).fit(X_train, y_train)
 y_pred = knn.predict(X_test)
 
-# Print results
 print(f"Accuracy: {accuracy_score(y_test, y_pred)}")
 print("Classification Report:\n", classification_report(y_test, y_pred))
 print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
