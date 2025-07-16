@@ -9,5 +9,9 @@ labels = kmeans.predict(X)
 centers = kmeans.cluster_centers_
 
 plt.scatter(X[:,0], X[:,1], c=labels, cmap='viridis')
-plt.scatter(centers[:,0], centers[:,1], c='red', s=200, marker='o')
+plt.scatter(centers[:,0], centers[:,1], c='red', s=200, marker='o', label='Centroids')
+plt.title('K-Means Clustering')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.legend()
 plt.show()
