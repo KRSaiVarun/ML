@@ -1,22 +1,16 @@
 import matplotlib.pyplot as plt
 from sklearn.datasets import make_blobs
 from sklearn.cluster import KMeans
-data, _ = make_blobs(n_samples=300, centers=4, random_state=42)
-model = KMeans(n_clusters=4)
-model.fit(data)
-labels = model.predict(data)
-plt.figure(figsize=(7, 5))
-plt.scatter(data[:, 0], data[:, 1], 
-           c=labels, cmap='viridis', 
-           edgecolor='black', alpha=0.9)
-plt.scatter(model.cluster_centers_[:, 0],
-           model.cluster_centers_[:, 1],
-           marker='o', s=200, 
-           color='red', 
-           label='Centers',
-           edgecolor='black')
-plt.title("K-Means Clustering")
-plt.xlabel("Feature 1")
-plt.ylabel("Feature 2")
-plt.legend()
+
+# 1. Make fake grouped data (300 points in 4 groups)
+X, _ = make_blobs(n_samples=300, centers=4, random_state=42)
+
+# 2. Do the clustering (find 4 groups)
+kmeans = KMeans(n_clusters=4).fit(X)
+labels = kmeans.predict(X)
+centers = kmeans.cluster_centers_
+
+# 3. Show the results
+plt.scatter(X[:,0], X[:,1], c=labels, cmap='viridis')
+plt.scatter(centers[:,0], centers[:,1], c='red', s=200, marker='X')
 plt.show()
